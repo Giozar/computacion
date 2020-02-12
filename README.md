@@ -1,0 +1,2 @@
+# computacion
+código de bases
