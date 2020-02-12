@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Computación</title>
+</head>
+<body>
+    <section>
+        <h3>Cambio de bases</h3>
+    </section>
+
+    <form>
+        <input type="text" name="" id="nume" placeholder="Ingresa el numero"><input type="text" name="" id="bact" placeholder="base"><br>
+
+        <input type="text" name="" id="base" placeholder="Ingresa la base a la cual quieres cambiar"><br>
+
+        <input type="text" name="" id="resultado" placeholder="resultado" ><br>
+
+        <input type="button" name="" name="" id="boton" value="Evaluar"><br>
+
+        <p id="parrafo"></p>
+    </form>
+    
+</body>
+    <script>
+       (function(){
+           var boton = document.getElementById("boton");
+
+           boton.addEventListener("click",evaluar);
+
+           function evaluar(){
+                
+                var nume =  document.getElementById("nume").value; //numero de entrada
+
+                var bact = parseFloat(document.getElementById("bact").value); //numero de base actual
+
+                var base = parseFloat(document.getElementById("base").value); //numero base a cambiar
+
+                var resultado =  document.getElementById("resultado"); //numero de salida
+
+                var parrafo = document.getElementById("parrafo");
+
+                var numdig = nume.length; //numero de digitos del numero de entrada
+
+                var contador = 0; //contador del cliclo 1
+
+                var r = 0;//resultado de la base elevada
+
+                var almacen = 0;//digito del numero de entrada por la base elevada
+
+                var basdec = 0;//resultado a decimal  
+
+                var residuo = 0;//residuo de la division del numero decimal y la base a encontrar
+
+                var cociente = 0;//cociente de la division del numero decimal y la base a encontrar
+
+                var baseres = 0;//resultado de la base buscada
+
+                var m = parseFloat(numdig)-1; //numero de posicion de los digitos de ultimo al primero
+
+                var comprobador = base + 1;
+
+                    while (contador < numdig) {
+                    
+                        r = Math.pow(bact,contador);
+
+                         var dig = parseFloat(nume.charAt(m));
+
+                         almacen = dig*r;
+
+                         basdec = basdec + almacen;
+
+                         m--;
+
+                         contador++;
+                     }
+
+                 cociente = basdec / base;
+
+
+                    while (cociente > base) {
+
+                        residuo = basdec % base;
+
+                        cociente = basdec / base;
+
+                        basdec = cociente;
+
+                        baseres = residuo;
+
+                        //parrafo.innerHTML = baseres;
+
+                       // document.write(baseres);
+                        
+                            /*if (cociente < base) {
+                                
+                                //document.write(cociente);
+                            }*/
+                    }
+
+             }           
+       }());
+
+
+
+
+    </script>
+
+</html>
