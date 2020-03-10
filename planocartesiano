@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Plano Cartesiano</title>
+</head>
+<body>
+    <form>
+        <label>Ingresa el tamaño del plano</label><input id="plano" type="text"><br>
+        <input id="btn1" type="button" value="ACEPTAR"><br>
+
+        <label>Ingresa el eje X del punto</label><input id="ejex" type="text"><br>
+        <label>Ingresa el eje Y del punto</label><input id="ejey" type="text"><br>
+        <input id="btn2" type="button" value="ACEPTAR"><br>
+    </form>
+    <section id="hoja">
+        <canvas id="pagina" width="1000" height="1000"></canvas>
+    </section>
+    
+</body>
+<script>
+
+    function inicio(){
+        var plano = parseFloat(document.getElementById("plano").value);
+        var pagina = document.getElementById("pagina");
+        var lienzo = pagina.getContext("2d");
+        var btn1 = document.getElementById("btn1");
+        var btn2 = document.getElementById("btn2");
+        var borrar = 0;
+        
+
+        function iniciarplano(){
+            
+            lienzo.clearRect(0,0,plano,plano);
+            lienzo.strokeRect(0,0,plano,plano);
+
+            var x = 0;
+            while( x < plano){
+                lienzo.beginPath();
+                lienzo.moveTo(x,0);
+                lienzo.lineTo(x,plano);
+                lienzo.stroke();
+                lienzo.closePath();
+                x = x +10;
+
+            }
+
+            var y = 0;
+            while( y < plano){
+                lienzo.beginPath();
+                lienzo.moveTo(0,y);
+                lienzo.lineTo(plano,y);
+                lienzo.stroke();
+                lienzo.closePath();
+                y = y +10;
+
+            }
+        }
+    
+        function coor(){
+            var ejex = parseFloat(document.getElementById("ejex").value);
+            var ejey = parseFloat(document.getElementById("ejey").value);
+            var pagina = document.getElementById("pagina");
+            var lienzo = pagina.getContext("2d");
+            lienzo.fillStyle = "red";
+            lienzo.fillRect((ejex*10)-2.5,(ejey*10)-2.5,5,5);
+
+
+        }
+
+    
+        btn1.addEventListener("click", iniciarplano);
+        btn2.addEventListener("click", coor);
+
+    }
+
+    window.setInterval(inicio,1000);
+    
+
+
+
+</script>
+</html>
